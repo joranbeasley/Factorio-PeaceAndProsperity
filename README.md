@@ -12,6 +12,8 @@ https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/Peace_And
 
 and just put it in your Factorio/Mods folder ... thats all there is to it
 
+see also: https://wiki.factorio.com/index.php?title=Installing_Mods
+
 ### Video
 [![A Demo Reel](https://img.youtube.com/vi/9-d4dTXtzPE/0.jpg)](https://www.youtube.com/watch?v=9-d4dTXtzPE&feature=youtu.be)
 ### screen shots
