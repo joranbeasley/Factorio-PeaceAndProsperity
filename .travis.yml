@@ -1,6 +1,7 @@
-before_deploy:
-  - export BINARY=$(python update_version.py)
-
+script:
+  script:
+    - export BINARY=$(python update_version.py)
+    - echo OK $BINARY
 #
 #deploy:
 #  provider: releases
