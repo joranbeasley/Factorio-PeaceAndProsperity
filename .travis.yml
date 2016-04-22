@@ -1,7 +1,6 @@
 script:
-  script:
-    - export BINARY=$(python update_version.py)
-    - echo OK $BINARY
+  - export BINARY=$(python update_version.py)
+  - echo OK $BINARY
 #
 #deploy:
 #  provider: releases
