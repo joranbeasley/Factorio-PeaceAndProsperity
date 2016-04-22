@@ -5,4 +5,6 @@ This is an addon mod for the game Factorio ...
 It was born from necessity and was the first Factorio mod I created
 
 ## screen shots
-![Toolbar Position and Size](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Its here")
+![Mod Screen](https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/screenshots/ModScreen.png "Its here")
+![Mod Position](https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/screenshots/BarPositionAndSize_small.png "Its here")
+![Mod states](https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/screenshots/states.png "Its here")
