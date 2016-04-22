@@ -4,7 +4,7 @@ import shutil
 import tempfile
 from deploy_utils import find_package_folder,zipdir
 
-tag = os.popen("git describe --tags").read().strip()
+tag = os.popen("git describe --tags").read().strip().split("-")[0]
 package_directory = find_package_folder()
 info_file = os.path.join(package_directory,"info.json")
 data = json.load(open(info_file))
