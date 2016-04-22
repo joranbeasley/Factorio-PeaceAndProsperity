@@ -1,3 +1,4 @@
+script: "echo nothing to do"
 before_deploy:
   - export BINARY=$(python update_version.py)
   - echo OK $BINARY
