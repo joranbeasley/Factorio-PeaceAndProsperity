@@ -46,23 +46,30 @@ script.on_event(defines.events.on_gui_click,
 			end
 		elseif event.element.name == "but_resources" then
 			current_button = current_button + 1
-		elseif event.element.name == "but_deploy" and current_button > 0 then
+		elseif event.element.name == "but_deploy" then
 			local idx,resource = resource_from_index(current_button)
 			local surface = game.players[1].surface 
-			if resource ~= "oil" then
+			if resource == "oil" then
+				local positions = {{-2,-2},{2,2},{0,0},{-2,2},{2,-2}}
+				for i, pair in ipairs(positions) do
+					local x,y = pair[1],pair[2]
+					surface.create_entity({name="crude-oil", amount=50000, position={player.position.x+x, player.position.y+y}})
+				end
+			elseif resource == "none" then
+                local area = {{player.position.x-2,player.position.y-2},{player.position.x+2,player.position.y+2}}
+				for i,entity in ipairs(surface.find_entities(area)) do
+					if entity.name ~= "player" then
+					    entity.destroy()
+                    end
+				end
+			else
 				for y=-2,2 do
 					for x=-2,2 do    
 						surface.create_entity({name=resource, amount=5000, position={player.position.x+x, player.position.y+y}})   
 					end  
 				end
-			else
-				local positions = {{-2,-2},{2,2},{0,0},{-2,2},{2,-2}}
-				for i, pair in ipairs(positions) do
-					local x,y = pair[1],pair[2]
-					surface.create_entity({name="crude-oil", amount=5000, position={player.position.x+x, player.position.y+y}})   					
-				end
 			end	
-			debug(string.format("Deployed : %s",resource))
+
 		end
 		update_buttons()
 	end
@@ -72,6 +79,13 @@ script.on_event(defines.events.on_gui_click,
 function update_buttons()  
     -- update buttons ... it should only be called explicitly after a state change event (gui click for example)  	
 	current_button,style = style_from_index(current_button)	
+	if style == "jmod_button_none_style" then
+		player.gui.top.jmod_main_frameA.but_deploy.style.font_color = red
+		player.gui.top.jmod_main_frameA.but_deploy.caption = "Destroy Resources"
+	else
+		player.gui.top.jmod_main_frameA.but_deploy.style.font_color = white
+		player.gui.top.jmod_main_frameA.but_deploy.caption = "Create Resources"
+	end
 	player.gui.top.jmod_main_frameA.but_resources.style =  style
 	if not game.peaceful_mode then
 		player.gui.top.jmod_main_frameA.but_mobs.style.font_color = red
@@ -79,5 +93,6 @@ function update_buttons()
 	else
 		player.gui.top.jmod_main_frameA.but_mobs.style.font_color = green
 		player.gui.top.jmod_main_frameA.but_mobs.caption = "Mobs Peaceful"
-	end	
+	end
+
 end

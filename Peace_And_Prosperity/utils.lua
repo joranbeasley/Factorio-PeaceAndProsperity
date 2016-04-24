@@ -103,9 +103,9 @@ end
 ----------------------------------------------
 
 --local btnstyles = {"none","stone","iron-ore","copper-ore","coal","oil"}
-local btnstyles = {"stone","iron-ore","copper-ore","coal","oil"}
---local num_btnstyles = 6
-local num_btnstyles = 5
+local btnstyles = {"stone","iron-ore","copper-ore","coal","oil","none"}
+local num_btnstyles = 6
+--local num_btnstyles = 5
 function looping_index0_into_array(idx,T,sizeT)
     local safe_index = idx%sizeT
 	return safe_index,T[safe_index+1]
