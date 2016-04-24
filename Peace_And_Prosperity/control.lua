@@ -53,7 +53,7 @@ script.on_event(defines.events.on_gui_click,
 				local positions = {{-2,-2},{2,2},{0,0},{-2,2},{2,-2}}
 				for i, pair in ipairs(positions) do
 					local x,y = pair[1],pair[2]
-					surface.create_entity({name="crude-oil", amount=5000, position={player.position.x+x, player.position.y+y}})
+					surface.create_entity({name="crude-oil", amount=50000, position={player.position.x+x, player.position.y+y}})
 				end
 			elseif resource == "none" then
                 local area = {{player.position.x-2,player.position.y-2},{player.position.x+2,player.position.y+2}}
