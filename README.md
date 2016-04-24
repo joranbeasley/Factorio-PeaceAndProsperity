@@ -8,7 +8,7 @@ Just like any other mod
 
 download the zipfile here
 
-https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/Peace_And_Prosperity_0.01.0.zip
+https://github.com/joranbeasley/Factorio-PeaceAndProsperity/releases/download/0.1.2/Peace_And_Prosperity_0.1.2.zip
 
 and just put it in your Factorio/Mods folder ... thats all there is to it
 
