@@ -1,11 +1,12 @@
 script:
   - export BINARY=$(python update_version.py)
   - echo OK $BINARY
-#
-#deploy:
-#  provider: releases
-#  api_key: $GITHUB_TOKEN
-#  file: "FILE TO UPLOAD"
-#  skip_cleanup: true
-#  on:
-#    tags: true
+
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_TOKEN
+  file: $BINARY
+  skip_cleanup: true
+  on:
+    tags: true
