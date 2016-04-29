@@ -20,4 +20,3 @@ see also: https://wiki.factorio.com/index.php?title=Installing_Mods
 ![Mod Screen](https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/screenshots/ModScreen.png "Its here")
 ![Mod Position](https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/screenshots/BarPositionAndSize.png "Its here")
 ![Mod states](https://github.com/joranbeasley/Factorio-PeaceAndProsperity/raw/master/screenshots/states.png "Its here")
-
