@@ -103,14 +103,21 @@ function update_buttons()
     -- update buttons ... it should only be called explicitly after a state change event (gui click for example)  	
 	current_button,resource = resource_from_index(current_button)
     debug_print(serpent.dump(resource))
-
-    player.gui.top.jmod_main_frameA.container.main.but_resources.style =  resource.style
-    player.gui.top.jmod_main_frameA.container.bottom.lbl_deploy.caption =  "Deploy: "..resource.item_name.."      "
-	if not game.peaceful_mode then
-		player.gui.top.jmod_main_frameA.container.main.but_mobs.style.font_color = red
-		player.gui.top.jmod_main_frameA.container.main.but_mobs.caption = "Mobs Aggressive"
-	else
-		player.gui.top.jmod_main_frameA.container.main.but_mobs.style.font_color = green
-		player.gui.top.jmod_main_frameA.container.main.but_mobs.caption = "Mobs Peaceful  "
-	end
+    if player.gui.top.jmod_main_frameA ~= nil then
+        player.gui.top.jmod_main_frameA.container.main.but_resources.style =  resource.style
+        player.gui.top.jmod_main_frameA.container.bottom.lbl_deploy.caption =  "Deploy: "..resource.item_name.."      "
+        if not game.peaceful_mode then
+            player.gui.top.jmod_main_frameA.container.main.but_mobs.style.font_color = red
+            player.gui.top.jmod_main_frameA.container.main.but_mobs.caption = "Mobs Aggressive"
+        else
+            player.gui.top.jmod_main_frameA.container.main.but_mobs.style.font_color = green
+            player.gui.top.jmod_main_frameA.container.main.but_mobs.caption = "Mobs Peaceful  "
+        end
+    elseif player.gui.top.jmod_frameB ~= nil then
+        if game.peaceful_mode then
+            player.gui.top.jmod_frameB.style ="jmod_button_happy_style"
+        else
+            player.gui.top.jmod_frameB.style ="jmod_button_angry_style"
+        end
+    end
 end
