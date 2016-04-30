@@ -1,16 +1,8 @@
 require("constants")
-function probably_an_item (e)
-	return e.type == "resource"
-end
---for _,types in pairs(data.raw) do
---	for _,entity in pairs(types) do
---		default_gui[ITEM_BUTTON_STYLE_PREFIX .. entity.name] = style
---	end
---end
 
 for _,types in pairs(data.raw) do
 	for _,entity in pairs(types) do
-		if entity.icon then
+		if entity.icon and entity.type == "resource" then
             data.raw["gui-style"].default[ITEM_BUTTON_STYLE_PREFIX .. entity.name] = {
 				type = "button_style",
 				parent="jmod_button_style",

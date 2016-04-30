@@ -118,8 +118,8 @@ default_gui.jmod_button_angry_style =
 	bottom_padding = 0,
 	left_padding = 0,
 
-	width = 32,
-	height = 32,
+	width = 16,
+	height = 16,
 
 	default_graphical_set = extract_monolith(32,  0),
 	hovered_graphical_set = extract_monolith(32,  0),--extract_monolith(23,  30),
@@ -137,8 +137,8 @@ default_gui.jmod_button_happy_style =
 	bottom_padding = 0,
 	left_padding = 0,
 
-	width = 32,
-	height = 32,
+	width = 16,
+	height = 16,
 
 	default_graphical_set = extract_monolith(0,  0),
 	hovered_graphical_set = extract_monolith(0,  0),--extract_monolith(23,  30),

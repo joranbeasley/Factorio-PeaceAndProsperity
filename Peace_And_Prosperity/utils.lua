@@ -149,19 +149,12 @@ function explode(div,str)
 end
 ----------------------------------------------
 
---local btnstyles = {"none","stone","iron-ore","copper-ore","coal","oil"}
-local btnstyles = {"stone","iron-ore","copper-ore","coal","oil"}
---local num_btnstyles = 6
-local num_btnstyles = 5
+
 function looping_index0_into_array(idx,T,sizeT)
     local safe_index = idx%sizeT
 	return safe_index,T[safe_index+1]
 end
-function is_probable_resource(entity,key,the_Table)
-    if string.endswith(key,"-ore") then return true end
-    if key == "oil" then return true end
 
-end
 local g_item_info = nil
 function ensure_item_info_initialized ()
 
@@ -177,23 +170,14 @@ function ensure_item_info_initialized ()
 				stack_size = stack_size
         },
     }
-    game.write_file("items.log","Start File")
+    --game.write_file("items.log","Start File")
     for _,item_list in pairs({game.entity_prototypes,game.item_prototypes}) do
         for name,item in pairs(item_list) do
-
             if item.type == "resource" then
-
-                -- For now stack_size will be how many items we give the player.
                 local stack_size = 1
-    --			if item.stackable then
-    --				stack_size = item.stack_size
-    --            end
-
-                game.write_file("items.log",string.format("%s=>%s\n","name",item.name),"a")
-                game.write_file("items.log",string.format("%s=>%s\n","type",item.type),"a")
-                --game.write_file("items.log",string.format("%s=>%s\n","icon",item.icon),"a")
-                game.write_file("items.log","\n-------\n\n","a")
-
+--                game.write_file("items.log",string.format("%s=>%s\n","name",item.name),"a")
+--                game.write_file("items.log",string.format("%s=>%s\n","type",item.type),"a")
+--                game.write_file("items.log","\n-------\n\n","a")
                 table.insert(g_item_info,{
                     style = ITEM_BUTTON_STYLE_PREFIX..name,
                     item_name = name,
@@ -203,41 +187,21 @@ function ensure_item_info_initialized ()
             end
         end
     end
-    debug_print("Got %s entries",#g_item_info)
 end
 function get_resources()
     ensure_item_info_initialized()
     return g_item_info
-    --for button_name,info in pairs(g_item_info) do
---		item_table.add({
---			type = (USE_CHECKBOXES and "checkbox" or "button"),
---			name = button_name,
---			style = ITEM_BUTTON_STYLE_PREFIX..info.item_name,
---			state = true -- ignored if not USE_CHECKBOXES
---		})
-        --debug_print(serpent.dump(info))
-	--end
+
 
 end
 
 function resource_from_index(idx)
     resources = get_resources()
-
-    --return safe_index,resources[1]
---    debug_print("N= %s",#resources)
---    for name,item in pairs(get_resources()) do
---		debug_print("%s --> %s",name,item)
---    end
 	return looping_index0_into_array(idx,resources,#resources)
 
 end
 function style_from_index(idx)
     safe_index,resource = resource_from_index(idx)
-
-    --resource_from_index(idx)
-	--style_name = explode("-",resource)[1]
-	--debug(style_name)
-    debug_print("Return %s,%s",safe_index,resource)
 	return safe_index,resource["style"]
 end
 
