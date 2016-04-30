@@ -6,10 +6,9 @@ It was born from necessity and was the first Factorio mod I created
 ### Install
 Just like any other mod
 
-download the zipfile here
+download the latest zipfile here
 
-https://github.com/joranbeasley/Factorio-PeaceAndProsperity/releases/download/0.1.2/Peace_And_Prosperity_0.1.2.zip
-
+https://github.com/joranbeasley/Factorio-PeaceAndProsperity/releases
 and just put it in your Factorio/Mods folder ... thats all there is to it
 
 see also: https://wiki.factorio.com/index.php?title=Installing_Mods
