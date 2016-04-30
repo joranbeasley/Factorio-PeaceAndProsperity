@@ -1,4 +1,5 @@
 require "defines"
+require ("constants")
 
 debug_level = -1  -- eventually change this in on_init()/on_load() of the mod
 
@@ -9,46 +10,91 @@ blue = {r = 0, g = 0, b = 1}
 yellow = {r = 1, g = 1, b = 0}
 orange = {r = 1, g = 0.5, b = 0}
 
+
+
+
+
+
+function string.startswith(String,Start)
+   return string.sub(String,1,string.len(Start))==Start
+end
+
+function string.endswith(String,End)
+   return End=='' or string.sub(String,-string.len(End))==End
+end
+table.filter = function(t, filterIter)
+  local out = {}
+
+  for k, v in pairs(t) do
+    if filterIter(v, k, t) then out[k] = v end
+  end
+
+  return out
+end
+
+
 --------------------------------------------------------------------------------------
-function debug( s, lvl )
-	if true then
-		game.players[1].print(s)
-		return
+function debug_log(s,...)
+	--if not args then s,args="%s",{s,} end
+	local file = io.open("peaceandprosperity.log.txt", "a")
+	--if arg then
+		file:write(string.format(s+"\n",...))
+	--else
+	--    file:write(s+"\n")
+	-- end
+end
+function debug_print( s, ... )
+	--if not args then s,args="%s",{s,} end
+	--if arg then
+	game.players[1].print(string.format(s,...))
+	--else
+	--	game.players[1].print(s)
+	--end
+end
+
+function item_picture (icon, highlight)
+	local pic = {
+		filename = icon,
+		width = 32,
+		height = 32
+	}
+	if USE_CHECKBOXES then
+		pic.shift = { 0, -8 }
 	end
-	if debug_level == -1 then return end
-	
-	if lvl == nil then lvl = debug_level end
-	
-	if debug_mem == nil then debug_mem = {} end
-	
-	if s == "CLEAR" then
-		for _, player in pairs(game.players) do
-			player.clear_console()
-		end
+	if highlight then
+		-- setting values > 1 seems to just make the image disappear. in any case this
+		-- is just temporary until i figure out how to draw a slot-style highlighted bg.
+		pic.tint = {r=0.5,g=0.5,b=0.5,a=1}
 	end
-	
-	if (debug_level >= 0) and ((lvl >= debug_level) or (lvl == 0)) then 
-		if game ~= nil and #game.players > 0 then
-			if #debug_mem > 0 then
-				for _, m in pairs( debug_mem ) do
-					for _, player in pairs(game.players) do
-						player.print(m)
-					end
-				end
-				debug_mem = {}
-				end
-			
-			if s ~= nil then 
-				for _, player in pairs(game.players) do
-					player.print(s)
-				end
-			end
-		else
-			table.insert( debug_mem, s )
+	return pic
+end
+--[[
+Returns a graphical_set table given an icon filename, optionally highlighted (a boolean)
+as in the case of click / hover.
+--]]
+
+function item_graphical_set (icon, highlight)
+	return {
+		type = "monolith",
+		monolith_image = item_picture(icon, highlight)
+	}
+end
+
+--[[
+Check if an object has a flag set. Note that data.raw is not LuaItemPrototype yet, so there is
+no .has_flag() function. We just check in .flags.
+--]]
+
+function has_flag (flags, flag)
+	if not flags then
+		return false
+	end
+	for _,f in pairs(flags) do
+		if f == flag then
+			return true
 		end
 	end
 end
-
 --------------------------------------------------------------------------------------
 function square_area( origin, radius )
 	return {
@@ -102,21 +148,59 @@ function explode(div,str)
 end
 ----------------------------------------------
 
---local btnstyles = {"none","stone","iron-ore","copper-ore","coal","oil"}
-local btnstyles = {"stone","iron-ore","copper-ore","coal","oil","none"}
-local num_btnstyles = 6
---local num_btnstyles = 5
+
 function looping_index0_into_array(idx,T,sizeT)
     local safe_index = idx%sizeT
 	return safe_index,T[safe_index+1]
 end
+
+local g_item_info = nil
+function ensure_item_info_initialized ()
+
+	if g_item_info then
+		return
+	end
+
+
+	g_item_info = {
+        {
+                style = "jmod_button_none_style",
+				item_name = "clear",
+				stack_size = stack_size
+        },
+    }
+    --game.write_file("items.log","Start File")
+    for _,item_list in pairs({game.entity_prototypes,game.item_prototypes}) do
+        for name,item in pairs(item_list) do
+            if item.type == "resource" then
+                local stack_size = 1
+--                game.write_file("items.log",string.format("%s=>%s\n","name",item.name),"a")
+--                game.write_file("items.log",string.format("%s=>%s\n","type",item.type),"a")
+--                game.write_file("items.log","\n-------\n\n","a")
+                table.insert(g_item_info,{
+                    style = ITEM_BUTTON_STYLE_PREFIX..name,
+                    item_name = name,
+                    stack_size = stack_size
+                })
+
+            end
+        end
+    end
+end
+function get_resources()
+    ensure_item_info_initialized()
+    return g_item_info
+
+
+end
+
 function resource_from_index(idx)
-	return looping_index0_into_array(idx,btnstyles,num_btnstyles)
+    resources = get_resources()
+	return looping_index0_into_array(idx,resources,#resources)
+
 end
 function style_from_index(idx)
     safe_index,resource = resource_from_index(idx)
-	style_name = explode("-",resource)[1]
-	--debug(style_name)
-	return safe_index,string.format("jmod_button_%s_style",style_name)
+	return safe_index,resource["style"]
 end
 

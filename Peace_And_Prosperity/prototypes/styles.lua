@@ -1,3 +1,4 @@
+require("utils")
 data:extend(
 	{
 		{
@@ -74,7 +75,7 @@ function extract_monolith(xx, yy)
 		left_monolith_border = 0,
 
 		monolith_image = {
-			filename = "__Peace_And_Prosperity__/graphics/factorio_stones.png",
+			filename = "__Peace_And_Prosperity__/graphics/happy_angry.png",
 			priority = "extra-high-no-scale",
 			width = 32,
 			height = 32,
@@ -100,12 +101,12 @@ default_gui.jmod_button_none_style =
 	width = 32,
 	height = 32,
 
-	default_graphical_set = extract_monolith(0,  0),
-	hovered_graphical_set = extract_monolith(0,  0),--extract_monolith(23,  30),
-	clicked_graphical_set = extract_monolith(0,  0),--extract_monolith(46,  30),
+	default_graphical_set = extract_monolith(64,  0),
+	hovered_graphical_set = extract_monolith(64,  0),--extract_monolith(23,  30),
+	clicked_graphical_set = extract_monolith(64,  0),--extract_monolith(46,  30),
 }
 
-default_gui.jmod_button_stone_style = 
+default_gui.jmod_button_angry_style =
 {
     type = "button_style",
 	parent="jmod_button_style",
@@ -117,14 +118,14 @@ default_gui.jmod_button_stone_style =
 	bottom_padding = 0,
 	left_padding = 0,
 
-	width = 32,
-	height = 32,
+	width = 16,
+	height = 16,
 
 	default_graphical_set = extract_monolith(32,  0),
 	hovered_graphical_set = extract_monolith(32,  0),--extract_monolith(23,  30),
 	clicked_graphical_set = extract_monolith(32,  0),--extract_monolith(46,  30),
 }
-default_gui.jmod_button_iron_style = 
+default_gui.jmod_button_happy_style =
 {
     type = "button_style",
 	parent="jmod_button_style",
@@ -136,68 +137,10 @@ default_gui.jmod_button_iron_style =
 	bottom_padding = 0,
 	left_padding = 0,
 
-	width = 32,
-	height = 32,
+	width = 16,
+	height = 16,
 
-	default_graphical_set = extract_monolith(64,  0),
-	hovered_graphical_set = extract_monolith(64,  0),--extract_monolith(23,  30),
-	clicked_graphical_set = extract_monolith(64,  0),--extract_monolith(46,  30),
+	default_graphical_set = extract_monolith(0,  0),
+	hovered_graphical_set = extract_monolith(0,  0),--extract_monolith(23,  30),
+	clicked_graphical_set = extract_monolith(0,  0),--extract_monolith(46,  30),
 }
-default_gui.jmod_button_copper_style = 
-{
-    type = "button_style",
-	parent="jmod_button_style",
-
-	scalable = false,
-
-	top_padding = 0,
-	right_padding = 0,
-	bottom_padding = 0,
-	left_padding = 0,
-
-	width = 32,
-	height = 32,
-
-	default_graphical_set = extract_monolith(0,  32),
-	hovered_graphical_set = extract_monolith(0,  32),--extract_monolith(23,  30),
-	clicked_graphical_set = extract_monolith(0,  32),--extract_monolith(46,  30),
-}
-default_gui.jmod_button_coal_style = 
-{
-    type = "button_style",
-	parent="jmod_button_style",
-
-	scalable = false,
-
-	top_padding = 0,
-	right_padding = 0,
-	bottom_padding = 0,
-	left_padding = 0,
-
-	width = 32,
-	height = 32,
-
-	default_graphical_set = extract_monolith(32,  32),
-	hovered_graphical_set = extract_monolith(32,  32),--extract_monolith(23,  30),
-	clicked_graphical_set = extract_monolith(32,  32),--extract_monolith(46,  30),
-}
-default_gui.jmod_button_oil_style = 
-{
-    type = "button_style",
-	parent="jmod_button_style",
-
-	scalable = false,
-
-	top_padding = 0,
-	right_padding = 0,
-	bottom_padding = 0,
-	left_padding = 0,
-
-	width = 32,
-	height = 32,
-
-	default_graphical_set = extract_monolith(64,  32),
-	hovered_graphical_set = extract_monolith(64,  32),--extract_monolith(23,  30),
-	clicked_graphical_set = extract_monolith(64,  32),--extract_monolith(46,  30),
-}
-

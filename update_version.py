@@ -4,9 +4,9 @@ import shutil
 import tempfile
 import zipfile
 
-from deploy_utils import find_package_folder,zipdir,get_version_tag
+from deploy_utils import find_package_folder,zipdir
 
-tag = get_version_tag()
+tag = os.popen("git describe --tags").read().strip().split("-")[0]
 package_directory = find_package_folder()
 info_file = os.path.join(package_directory,"info.json")
 data = json.load(open(info_file))
