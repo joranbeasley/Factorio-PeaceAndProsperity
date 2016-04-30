@@ -7,7 +7,11 @@ local is_first_load = nil
 --------------------------------------------------------------------------------------
 function create_gui()
     player.gui.top.add({type = "frame", name = "jmod_main_frameA", caption = "", direction = "horizontal", style = "jmod_frame_style"})
-    player.gui.top.jmod_main_frameA.add({type="flow",name="container",direction="vertical"})
+	update_gui()
+end
+-- This function allows pre 0.1.5 version existing games to load
+function update_gui()
+	player.gui.top.jmod_main_frameA.add({type="flow",name="container",direction="vertical"})
     player.gui.top.jmod_main_frameA.container.add({type="flow",name="main",direction="horizontal"})
     player.gui.top.jmod_main_frameA.container.add({type="flow",name="bottom",direction="horizontal"})
 
@@ -27,6 +31,8 @@ function on_init()
 	surf = game.get_surface(1)
 	if player.gui.top.jmod_main_frameA == nil then
         create_gui()
+	elseif player.gui.top.jmod_main_frameA.container == nil then
+		update_gui()
 	end
 	update_buttons()
 end
