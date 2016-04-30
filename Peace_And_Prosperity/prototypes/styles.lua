@@ -1,4 +1,4 @@
-require("utils")
+require("utils_peaceprosperity")
 data:extend(
 	{
 		{

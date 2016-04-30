@@ -1,7 +1,7 @@
 require "defines"
 require ("constants")
 
-debug_level = -1  -- eventually change this in on_init()/on_load() of the mod
+debug_level = 1  -- eventually change this in on_init()/on_load() of the mod
 
 white = {r = 1, g = 1, b = 1}
 red = {r = 1, g = 0.3, b = 0.3}
@@ -35,6 +35,7 @@ end
 
 --------------------------------------------------------------------------------------
 function debug_log(s,...)
+	if debug_level >= 0 then return end
 	--if not args then s,args="%s",{s,} end
 	local file = io.open("peaceandprosperity.log.txt", "a")
 	--if arg then
@@ -44,6 +45,7 @@ function debug_log(s,...)
 	-- end
 end
 function debug_print( s, ... )
+	if debug_level >= 0 then return end
 	--if not args then s,args="%s",{s,} end
 	--if arg then
 	game.players[1].print(string.format(s,...))
