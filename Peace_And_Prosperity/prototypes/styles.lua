@@ -33,7 +33,7 @@ default_gui.jmod_frame_style =
 default_gui.jmod_label_style =
 {
 	type="label_style",
-	parent="default",
+	parent="label_style",
 	font="jmod_font",
 	align = "left",
 	default_font_color={r=1, g=1, b=1},
@@ -47,7 +47,7 @@ default_gui.jmod_label_style =
 default_gui.jmod_button_style = 
 {
 	type="button_style",
-	parent="default",
+	parent="button_style",
 	font="jmod_font_bold",
 	align = "center",
 	default_font_color={r=1, g=1, b=1},
