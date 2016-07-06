@@ -3,7 +3,7 @@ require("constants")
 for _,types in pairs(data.raw) do
 	for _,entity in pairs(types) do
 		if entity.icon and entity.type == "resource" then
-            data.raw["gui-style"].default[ITEM_BUTTON_STYLE_PREFIX .. entity.name] = {
+			data.raw["gui-style"].default[ITEM_BUTTON_STYLE_PREFIX .. entity.name] = {
 				type = "button_style",
 				parent="jmod_button_style",
 				scalable = false,
@@ -18,6 +18,6 @@ for _,types in pairs(data.raw) do
 				clicked_graphical_set = item_graphical_set(entity.icon, true),
 				disabled_graphical_set = item_graphical_set(entity.icon, false)
 			}
-       	end
+		end
 	end
 end
